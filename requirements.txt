@@ -2,3 +2,12 @@ pandas
 Flask
 bs4
 requests
+gensim==4.2.0
+joblib==1.1.0
+matplotlib==3.3.4
+nltk==3.6.1
+numpy==1.20.1
+pandas==1.4.2
+scikit_learn==1.0.2
+seaborn==0.11.1
+spacy==3.3.0
