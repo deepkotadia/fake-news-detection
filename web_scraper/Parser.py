@@ -45,6 +45,7 @@ def extract_express_co_uk_para(soup):
     print(map)
     return map
 
+
 def extract_general_para(soup):
     map = []
     for x in soup.findAll("p"):
@@ -70,7 +71,9 @@ def get_content_from_scraper(url):
         result = extract_general_para(soup)
     elif len(result) == 0:
         result = extract_general_para(soup)
-    return result
+
+
+    return " ".join(result)
 
 # FAKE ARTICLES
 # https://bluntforcetruth.com/news/huge-scandal-oregon-changes-hundreds-of-republican-ballots-to-non-partisan-denying-gop-voters-the-right-to-participate-in-primary/
@@ -78,7 +81,8 @@ def get_content_from_scraper(url):
 # https://100percentfedup.com/this-is-amazing-in-1984-the-new-york-times-said-trump-would-be-our-best-president-they-forgot/
 # https://www.express.co.uk/life-style/health/1405891/coronavirus-vaccine-side-effects-arthralgia-joint-pain-pfzier-jab
 
-# parsing_content("https://www.express.co.uk/life-style/health/1405891/coronavirus-vaccine-side-effects-arthralgia-joint-pain-pfzier-jab")
+text = get_content_from_scraper("https://www.express.co.uk/life-style/health/1405891/coronavirus-vaccine-side-effects-arthralgia-joint-pain-pfzier-jab")
+print(text)
 # parsing_content("https://www.thetimes.co.uk/article/keir-starmers-instant-decision-on-resignation-took-three-days-to-be-revealed-kjf9bkp5k")
 # parsing_content("https://apnews.com/article/capitol-siege-biden-presidential-elections-electoral-college-mark-meadows-296ddf04ffaacec07f548a2a997af448")
 # html = send_get_requests("https://www.npr.org/sections/health-shots/2022/04/26/1094881056/older-adults-shouldnt-start-a-routine-of-daily-aspirin-task-force-says")
