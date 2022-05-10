@@ -55,7 +55,7 @@ def preprocess(text):
 def infer_model(text):
     X_test = preprocess(text)
     X_test = X_test.iloc[0].values
-    model = joblib.load('multinb.sav')
+    model = joblib.load('ml_model/multinb.sav')
     prediction = model.predict(X_test)
     probability = model.predict_proba(X_test)
     confidence = probability.max(axis=1)
