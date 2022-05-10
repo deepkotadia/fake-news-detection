@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
 from datetime import datetime
 import pandas as pd
-from web_scraper import Parser
 from ml_model import test
 import utils
+from web_scraper.parser import NewsWebsiteScraper
 
 app = Flask(__name__)
 
@@ -21,10 +21,14 @@ def news_classification():
     Example Request: http://127.0.0.1:5000/classification?url=https://www.npr.org/2022/05/09/1096617152/a-warhol-marilyn-brings-a-record-auction-price-195-million
     """
     article_url = request.args.get("url")
-
+    threshold = 20
     # Scrape article text from URL
-    article_scraped_text = Parser.get_content_from_scraper(url=article_url)
-
+    newsWebsiteScraper = NewsWebsiteScraper()
+    article_scraped_text = newsWebsiteScraper.get_content_from_scraper(url=article_url)
+    website_supported = newsWebsiteScraper.is_website_supported(url=article_url)
+    content_found = False
+    if len(article_scraped_text) > threshold:
+        content_found = True
     # Process URL string
     website_domain, url_path = utils.parse_url_string(article_url)
 
@@ -56,7 +60,7 @@ def news_classification():
     total_true = website_domain_df[website_domain_df["label"] == True].shape[0]
 
     # Build and return response (classification, confidence) back to front-end
-    response = jsonify({"predicted_label": pred_label, "confidence_score": conf_score, "website_domain": website_domain,
+    response = jsonify({"website_supported": website_supported, "content_found": content_found , "predicted_label": pred_label, "confidence_score": conf_score, "website_domain": website_domain,
                         "website_hits": total_hits, "website_true": total_true})
     return response
 
@@ -68,12 +72,20 @@ def user_correction():
     :return: Update timestamp if successful
     Example Request: http://127.0.0.1:5000/correction?url=https://www.npr.org/2022/05/09/1096617152/a-warhol-marilyn-brings-a-record-auction-price-195-million&userlabel=0
     """
+
     article_url = request.args.get("url")
     user_classification = request.args.get("userlabel")
     label = bool(int(user_classification))
 
     # Scrape article text from URL
-    article_scraped_text = Parser.get_content_from_scraper(url=article_url)
+    newsWebsiteScraper = NewsWebsiteScraper()
+    article_scraped_text = newsWebsiteScraper.get_content_from_scraper(url=article_url)
+    website_supported = newsWebsiteScraper.is_website_supported(url=article_url)
+    if not website_supported:
+        response = jsonify({"website_supported": website_supported})
+        return response
+
+
 
     # Process URL string
     website_domain, url_path = utils.parse_url_string(article_url)
