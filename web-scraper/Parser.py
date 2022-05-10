@@ -53,7 +53,7 @@ def extract_general_para(soup):
     print(f"the complete data is \n{map}")
 
 
-def parsing_content(url):
+def get_content_from_scraper(url):
     # url = "https://www.npr.org/2022/04/26/1061867530/kamala-harris-test-positive-covid-vice-president"
     # url = https://apnews.com/article/capitol-siege-biden-presidential-elections-electoral-college-mark-meadows-296ddf04ffaacec07f548a2a997af448
     html = send_get_requests(url)
