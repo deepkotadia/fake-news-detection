@@ -56,7 +56,7 @@ def news_classification():
     total_true = website_domain_df[website_domain_df["label"] == True].shape[0]
 
     # Build and return response (classification, confidence) back to front-end
-    response = jsonify({"predicted_label": pred_label, "confidence_score": conf_score,
+    response = jsonify({"predicted_label": pred_label, "confidence_score": conf_score, "website_domain": website_domain,
                         "website_hits": total_hits, "website_true": total_true})
     return response
 
