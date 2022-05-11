@@ -29,9 +29,10 @@ def news_classification():
     print(f"ARTICLE SCRAPED TEXT\n {article_scraped_text}")
 
     # The scraper/parser supports only some websites currently, check if this news website is supported
-    threshold = 20
+    word_threshold = 30
+    num_words = len(article_scraped_text.split())
     content_found = False
-    if len(article_scraped_text) > threshold:
+    if len(article_scraped_text) > 0 and num_words > word_threshold:
         content_found = True
     if not content_found:
         return jsonify({"status": "Website not Supported"})
@@ -90,9 +91,10 @@ def user_correction():
     article_scraped_text = news_website_scraper.get_content_from_scraper(url=article_url)
 
     # The scraper/parser supports only some websites currently, check if this news website is supported
-    threshold = 20
+    word_threshold = 30
+    num_words = len(article_scraped_text.split())
     content_found = False
-    if len(article_scraped_text) > threshold:
+    if len(article_scraped_text) > 0 and num_words > word_threshold:
         content_found = True
     if not content_found:
         return jsonify({"status": "Website not Supported"})
