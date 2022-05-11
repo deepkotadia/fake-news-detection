@@ -59,7 +59,7 @@ def news_classification():
     # Compute website credibility score from model_predictions and user_corrections tables
     user_corrections_df = pd.read_csv(filepath_or_buffer="data/user_corrections.csv")
     cols = ["website_domain", "label"]
-    combined_df = pd.concat([model_predictions_df[cols], user_corrections_df[cols]], ignore_index=True)
+    combined_df = pd.concat([updated_model_predictions_df[cols], user_corrections_df[cols]], ignore_index=True)
     website_domain_df = combined_df[combined_df["website_domain"] == website_domain]
     total_hits = website_domain_df.shape[0]
     total_true = website_domain_df[website_domain_df["label"] == True].shape[0]
