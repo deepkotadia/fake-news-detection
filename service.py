@@ -20,6 +20,7 @@ def news_classification():
     :return: Article prediction along with confidence score
     Example Request: http://127.0.0.1:5000/classification?url=https://www.npr.org/2022/05/09/1096617152/a-warhol-marilyn-brings-a-record-auction-price-195-million
     """
+    start_ts = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
     article_url = request.args.get("url")
 
     # Scrape article text from URL
@@ -43,9 +44,10 @@ def news_classification():
 
     # Add model prediction details to model_predictions table
     model_predictions_df = pd.read_csv(filepath_or_buffer="data/model_predictions.csv")
-    update_ts = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+    end_ts = datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
     new_row_df = pd.DataFrame([{
-        "timestamp": update_ts,
+        "start_timestamp": start_ts,
+        "end_timestamp": end_ts,
         "full_url": article_url,
         "website_domain": website_domain,
         "url_path": url_path,
