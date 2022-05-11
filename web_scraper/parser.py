@@ -45,7 +45,6 @@ class NewsWebsiteScraper():
         return map
 
     def extract_apnews_paragraph(self, soup):
-        print(soup.head.title.text)
         map = []
         for x in soup.find_all("div", class_="Article"):
             for y in x.findAll('p'):
@@ -109,7 +108,7 @@ class NewsWebsiteScraper():
 # https://www.express.co.uk/life-style/health/1405891/coronavirus-vaccine-side-effects-arthralgia-joint-pain-pfzier-jab
 
 text = NewsWebsiteScraper().get_content_from_scraper("https://apnews.com/article/capitol-siege-biden-presidential-elections-electoral-college-mark-meadows-296ddf04ffaacec07f548a2a997af448")
-print(text)
+# print(text)
 # url = "https://www.npr.org/2022/04/26/1061867530/kamala-harris-test-positive-covid-vice-president"
 # url = https://apnews.com/article/capitol-siege-biden-presidential-elections-electoral-college-mark-meadows-296ddf04ffaacec07f548a2a997af448
 # parsing_content("https://www.thetimes.co.uk/article/keir-starmers-instant-decision-on-resignation-took-three-days-to-be-revealed-kjf9bkp5k")
