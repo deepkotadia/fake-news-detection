@@ -26,6 +26,8 @@ def news_classification():
     news_website_scraper = NewsWebsiteScraper()
     article_scraped_text = news_website_scraper.get_content_from_scraper(url=article_url)
 
+    print(f"ARTICLE SCRAPED TEXT\n {article_scraped_text}")
+
     # The scraper/parser supports only some websites currently, check if this news website is supported
     threshold = 20
     content_found = False
