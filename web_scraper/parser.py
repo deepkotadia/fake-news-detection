@@ -78,28 +78,26 @@ class NewsWebsiteScraper():
 
 
     def get_content_from_scraper(self, url):
-        try:
-            html = self.send_get_requests(url)
-            soup = BeautifulSoup(html, self.HTML_PARSER)
-            hostname = self.get_hostname_from_url(url)
-            result = None
 
-            if self.websites.NPR.value in hostname:
-                result = self.extract_npr_paragraph(soup)
-            elif self.websites.APNEWS.value in hostname:
-                result = self.extract_apnews_paragraph(soup)
-            elif self.websites.EXPRESS_CO_UK.value in hostname:
-                result = self.extract_express_co_uk_para(soup)
-            else:
-                result = self.extract_general_para(soup)
-            if result is None or len(result) == 0:
-                result = self.extract_general_para(soup)
-            if result is None or len(result) == 0:
-                return Exception("Not Able to scrape website")
+        html = self.send_get_requests(url)
+        soup = BeautifulSoup(html, self.HTML_PARSER)
+        hostname = self.get_hostname_from_url(url)
+        result = None
+        if self.websites.NPR.value in hostname:
+            result = self.extract_npr_paragraph(soup)
+        elif self.websites.APNEWS.value in hostname:
+            result = self.extract_apnews_paragraph(soup)
+        elif self.websites.EXPRESS_CO_UK.value in hostname:
+            result = self.extract_express_co_uk_para(soup)
+        else:
+            result = self.extract_general_para(soup)
+        if result is None or len(result) == 0:
+            result = self.extract_general_para(soup)
+        if result is not None and len(result) > 0:
             return " ".join(result)
-        except exec:
-            print(exec)
-            return Exception("Some Error Occurred While Scraping!!!")
+        else:
+            return ""
+
 
 # FAKE ARTICLES
 # https://bluntforcetruth.com/news/huge-scandal-oregon-changes-hundreds-of-republican-ballots-to-non-partisan-denying-gop-voters-the-right-to-participate-in-primary/
