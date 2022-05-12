@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+}
+
+body {
+    min-width: 550px;
+    width: fit-content;
+    background-color: #ffffff;
+}
+
+header {
+    z-index: 3;
+    background-color: #1565c0;
+    height: 30px;
+    color: #ffffff;
+    position: fixed;
+    width: 100%;
+    height: fit-content;
+    top: 0;
+    left: 0;
+    text-align: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.08);
+    font-size: x-large;
+}
+
+#line1 {
+    margin-top: 40px;
+}
+
+#undefined {
+    margin-top: 30px;
+    font-size: large;
+}
+
+#line1, #line2, #line3 {
+    font-size: large;
+    margin-left: 3px;
+    margin-right: 3px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08), 0 3px 6px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1px;
+}
+
+#line3 {
+    margin-bottom: 5px;
+}
+
+button {
+    font-size: large;
+}
+
+#loader {
+    margin-top: 40px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    height: 80px;
+    width: 50%;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 40px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border: 8px solid black;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: black transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }  
+
