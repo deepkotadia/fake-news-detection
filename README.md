@@ -20,6 +20,8 @@ To load the extension into Chrome,
 ## Usage
 To test if a news article has true or fake claims, open the article in Chrome and click on the "Fake News Fighter" icon from the extensions tray.
 
+![Sample Image](sample.png)
+
 The extension provides the following information about the article:
 
 - **Truthfulness classification** between "true" and "false" along with a **confidence score**.
